@@ -1,10 +1,23 @@
-* {
+body{
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(219, 219, 219);
 }
 
-h1 {
-    text-align: center;
-    font-size: 2rem;
-    color: blueviolet;
-    text-decoration: underline;
+.content-container {
+    max-width: 600px;
+    /* limit width but allow shrinking */
+    min-height: 200px;
+    /* ensures it’s tall enough */
+    border: 2px solid black; 
+    border-radius: 10px;
+    background-color: #aaa9aa;
+    padding: 0px;
+    margin: 20px auto;
+
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+        color: rgb(0, 0, 0);
+        text-decoration: underline;
+    }
 }
