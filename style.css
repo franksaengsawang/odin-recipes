@@ -1,23 +1,240 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(219, 219, 219);
+/* ===== Italian Trattoria Theme (Full CSS) ===== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ---------- Theme Tokens ---------- */
+:root{
+  --cream:#f8f3e7;
+  --ink:#3b2f2f;          /* warm dark brown text */
+  --red:#b22222;          /* maroon red */
+  --green:#1b7d3a;        /* basil green */
+  --gold:#c6a15b;         /* aged gold accent */
+  --shadow: rgba(0,0,0,.18);
 }
 
-.content-container {
-    max-width: 600px;
-    /* limit width but allow shrinking */
-    min-height: 200px;
-    /* ensures it’s tall enough */
-    border: 2px solid black; 
-    border-radius: 10px;
-    background-color: #aaa9aa;
-    padding: 0px;
-    margin: 20px auto;
+/* ---------- Base / Reset ---------- */
+*{ box-sizing: border-box; }
+html, body{ height:100%; }
+body{
+  margin:0;
+  background:
+     radial-gradient(1200px 600px at 20% 0%, rgba(0,0,0,.12), transparent 60%),
+     radial-gradient(1200px 600px at 120% 100%, rgba(0,0,0,.10), transparent 60%),
+     #eadfcb; /* subtle room tone */
+  font-family: "Crimson Text", Georgia, serif;
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img{ max-width:100%; height:auto; display:block; }
 
-    h1 {
-        text-align: center;
-        font-size: 2rem;
-        color: rgb(0, 0, 0);
-        text-decoration: underline;
-    }
+/* ---------- Header with Tricolore Ribbon ---------- */
+.content-container1{
+  max-width: 880px;
+  margin: 32px auto 16px;
+  padding: 28px 24px 18px;
+  background: var(--cream);
+  border: 6px double var(--gold);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px var(--shadow);
+  position: relative;
+}
+.content-container1::before,
+.content-container1::after{
+  content: "";
+  position: absolute;
+  left: 14px; right: 14px;
+  height: 6px; top: 10px;
+  background:
+    linear-gradient(90deg,var(--green) 0 33.33%, #fff 33.33% 66.66%, var(--red) 66.66% 100%);
+  border-radius: 6px;
+  opacity: .9;
+}
+.content-container1::after{ top:auto; bottom:10px; }
+
+.content-container1 h1{
+  margin: 0;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 2.4rem;
+  letter-spacing: .5px;
+  color: var(--ink);
+}
+
+/* ---------- Shared Section Cards ---------- */
+[class^="content-container"]:not(.content-container1){
+  max-width: 880px;
+  margin: 18px auto;
+  padding: 22px;
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,.08);
+  border-left: 6px solid var(--red);
+  border-right: 6px solid var(--green);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+/* ---------- Headings ---------- */
+h2{
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: .4px;
+  color: var(--red);
+  margin: 4px 0 14px;
+  text-transform: uppercase;
+}
+
+/* ---------- Decorative Separator ---------- */
+.separator{
+  height: 14px;
+  margin: 12px 0 18px;
+  position: relative;
+}
+.separator::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(0,0,0,.08) 18px 20px),
+    linear-gradient(90deg, var(--green), var(--red));
+  mask: linear-gradient(#000, #000);
+  -webkit-mask: linear-gradient(#000, #000);
+  opacity:.35;
+  border-radius: 999px;
+}
+
+/* ---------- Menu List ---------- */
+.menu-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-item{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(0,0,0,.12);
+}
+.menu-item:last-child{ border-bottom: none; }
+
+/* Dish name + dotted leaders */
+.dish{
+  font-weight: 700;
+  letter-spacing: .3px;
+  position: relative;
+  padding-right: 10px;
+}
+.dish::after{
+  content: " ................................................................................ ";
+  color: rgba(0,0,0,.25);
+  white-space: nowrap;
+  position: absolute;
+  left: calc(100% + 6px);
+  top: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+
+/* Price */
+.price{
+  font-weight: 700;
+  color: var(--green);
+  padding-left: 8px;
+  white-space: nowrap;
+}
+
+/* Small description line */
+.desc{
+  grid-column: 1 / -1;
+  font-style: italic;
+  color: rgba(0,0,0,.7);
+  margin-top: 4px;
+}
+
+/* ---------- Tags ---------- */
+.tag{
+  display:inline-block;
+  font: 600 0.75rem/1 "Crimson Text", Georgia, serif;
+  color:#fff;
+  background: var(--green);
+  padding:2px 8px;
+  border-radius:999px;
+  margin-left:8px;
+}
+.tag--spicy{ background: var(--red); }
+.tag--new{ background: var(--gold); color:#2b2111; }
+
+/* ---------- Links ---------- */
+a{
+  color: var(--red);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gold);
+}
+a:hover{
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
+a:focus-visible{
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+  border-bottom-color: var(--gold);
+}
+
+/* ---------- Optional: Two Columns ---------- */
+.menu-columns{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+/* ---------- Optional: Sticky Section Headers ---------- */
+.sticky-section h2{
+  position: sticky;
+  top: 0;
+  background: var(--cream);
+  padding-top: 6px;
+  z-index: 2;
+  box-shadow: 0 4px 0 rgba(0,0,0,.04);
+}
+
+/* ---------- Footer ---------- */
+.content-container3{
+  text-align: center;
+  font-size: .95rem;
+  border-left-color: var(--gold);
+  border-right-color: var(--gold);
+  color: rgba(0,0,0,.7);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px){
+  .menu-columns{ grid-template-columns: 1fr; }
+}
+@media (max-width: 640px){
+  .content-container1{ margin:20px 12px 10px; padding:22px 16px 14px; }
+  [class^="content-container"]:not(.content-container1){
+    margin:14px 12px; padding:16px;
+  }
+  h1{ font-size: 2rem; }
+  h2{ font-size: 1.3rem; }
+  .menu-item{ gap:8px; }
+  .dish::after{ display:none; } /* prevent awkward wraps on small screens */
+}
+
+/* ---------- Print-Friendly ---------- */
+@media print{
+  body{ background:#fff; }
+  .content-container1,
+  [class^="content-container"]{
+    box-shadow:none !important;
+    background:#fff !important;
+    border-color:#000 !important;
+  }
+  .content-container1{ border: 4px double #000; }
+  .content-container1::before,
+  .content-container1::after{ display:none !important; }
+  a{ color:#000; border-bottom:1px solid #000; }
+  .menu-item{ page-break-inside: avoid; break-inside: avoid; }
 }
